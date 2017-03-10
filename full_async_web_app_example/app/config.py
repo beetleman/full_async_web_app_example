@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 def get_config(app):
     return app['config']
 
@@ -12,3 +13,7 @@ class Base:
 
 class Main(Base):
     test = False
+
+
+class Test(Base):
+    test = True

@@ -51,10 +51,15 @@ lint: ## check style with flake8
 	flake8 full_async_web_app_example tests
 
 test: ## run tests quickly with the default Python
+	$(MAKE) clean-pyc
+	$(MAKE) lint
 	py.test
 
 
-test-all: ## run tests on every Python version with tox
+test-auto: test
+	watchmedo shell-command -p '*.py' -c '$(MAKE) test' -R -D .
+
+test-tox: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python

@@ -6,6 +6,7 @@ ROUTERS = (
     ('/', Index, 'index'),
 )
 
+
 def setup(app):
     for path, handler, name in ROUTERS:
         resource = app.router.add_resource(path, name=name)
