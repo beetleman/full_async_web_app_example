@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app/
+      - pip-cache:/root/.cache
+    environment:
+      - DATABASE_URL=postgresql://postgres@db:5432/postgres
+    links:
+      - "db:db"
+    ports:
+      - "8000:8000"
+    command: make run-devel
+
+  tests:
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app/
+      - pip-cache:/root/.cache
+    environment:
+      - DATABASE_URL=postgresql://postgres@db:5432/postgres
+    links:
+      - "db-test:db"
+    command: make test-auto
+
+  db:
+    image: postgres:9.6-alpine
+
+  db-test:
+    image: postgres:9.6-alpine
+
+volumes:
+  pip-cache:
+    driver: local

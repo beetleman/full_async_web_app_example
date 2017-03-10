@@ -50,7 +50,7 @@ clean-test: ## remove test and coverage artifacts
 lint: ## check style with flake8
 	flake8 full_async_web_app_example tests
 
-test: ## run tests quickly with the default Python
+test: install-devel ## run tests quickly with the default Python
 	$(MAKE) clean-pyc
 	$(MAKE) lint
 	py.test
@@ -93,6 +93,7 @@ install: clean ## install the package to the active Python's site-packages
 	python setup.py install
 
 install-devel: clean
+	pip install -r requirements_dev.txt
 	python setup.py develop
 
 run-devel: install-devel
