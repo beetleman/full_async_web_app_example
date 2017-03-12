@@ -26,10 +26,10 @@ def setup(app):
     database = peewee_async.PooledPostgresqlDatabase(
         **parse(conf.database_url)
     )
-    app['database'] = database
+    database_proxy.initialize(database)
 
-    objects = peewee_async.Manager(database)
+    app['database'] = database_proxy
+
+    objects = peewee_async.Manager(database_proxy)
     database.set_allow_sync(False)
     app['objects'] = objects
-
-    database_proxy.initialize(database)

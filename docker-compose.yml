@@ -24,7 +24,7 @@ services:
       - ./:/app/
       - pip-cache:/root/.cache
     environment:
-      - DATABASE_URL=postgresql+pool://postgres@db:5432/postgres
+      - DATABASE_URL=postgresql://postgres@db:5432/postgres
     links:
       - "db-test:db"
     command: make test-auto
