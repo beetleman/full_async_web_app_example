@@ -48,7 +48,7 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr htmlcov/
 
 lint: ## check style with flake8
-	flake8 full_async_web_app_example tests
+	flake8 full_async_web_app_example tests --exclude migrations
 
 test: install-devel ## run tests quickly with the default Python
 	$(MAKE) clean-pyc
@@ -98,3 +98,6 @@ install-devel: clean
 
 run-devel: install-devel
 	gunicorn full_async_web_app_example.main:app --bind 0.0.0.0:8000 --worker-class aiohttp.worker.GunicornWebWorker -w 1 --reload
+
+migrate:
+	pw_migrate migrate --database $$DATABASE_URL --directory full_async_web_app_example/migrations

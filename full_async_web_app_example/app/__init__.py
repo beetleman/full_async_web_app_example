@@ -2,6 +2,7 @@
 from aiohttp import web
 from .routes import setup as setup_routers
 from .middlewares import setup as setup_middlewares
+from .db import setup as setup_db
 
 
 async def on_startup(app):
@@ -25,5 +26,6 @@ def create(loop, conf=None):
 
     conf.setup(app)
     setup_routers(app)
+    setup_db(app)
 
     return app

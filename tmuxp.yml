@@ -1,0 +1,13 @@
+session_name: clojure-app
+start_directory: ./
+
+windows:
+  - window_name: docker
+    layout: even-vertical
+    panes:
+      - docker-compose kill; docker-compose up
+  - window_name: app
+    layout: even-vertical
+    panes:
+      - sleep 10; docker-compose logs -f --tail=1000 app
+      - sleep 10; docker-compose logs -f --tail=1000 tests

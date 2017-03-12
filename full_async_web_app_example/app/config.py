@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 
 def get_config(app):
@@ -13,7 +14,8 @@ class Base:
 
 class Main(Base):
     test = False
+    database_url = os.environ.get('DATABASE_URL')
 
 
-class Test(Base):
+class Test(Main):
     test = True

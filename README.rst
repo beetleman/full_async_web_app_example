@@ -24,6 +24,17 @@ Example
 * Free software: MIT license
 * Documentation: https://full-async-web-app-example.readthedocs.io.
 
+Migrations
+----------
+
+* create:
+.. code-block:: bash
+   docker-compose exec app pw_migrate create --database $DATABASE_URL --directory full_async_web_app_example/migrations --auto full_async_web_app_example.app.models migration_name
+
+* run migration
+.. code-block:: bash
+   docker-compose exec app make migrate
+
 
 Features
 --------
@@ -37,4 +48,3 @@ This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypack
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
-

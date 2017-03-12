@@ -16,7 +16,8 @@ requirements = [
     'cchardet==1.1.3',
     'peewee==2.9.0',
     'peewee-async==0.5.7',
-    'gunicorn==19.7.0'
+    'gunicorn==19.7.0',
+    'peewee-migrate==0.11.0'
 ]
 
 test_requirements = [
