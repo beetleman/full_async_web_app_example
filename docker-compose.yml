@@ -14,7 +14,10 @@ services:
       - "db:db"
     ports:
       - "8000:8000"
-    command: make run-devel
+    stdin_open: true
+    command: bash -c "pip install -r requirements_dev.txt &&
+                      pip install -e ./ &&
+                      gunicorn full_async_web_app_example.main:app --bind 0.0.0.0:8000 --worker-class aiohttp.worker.GunicornWebWorker -w 1 --reload"
 
   tests:
     build:
@@ -27,8 +30,10 @@ services:
       - DATABASE_URL=postgresql://postgres@db:5432/postgres
     links:
       - "db-test:db"
-    command: make test-auto
 
+    command: bash -c "pip install -r requirements_dev.txt &&
+                      pip install -e ./ &&
+                      ptw ./ -- -s -rs --color=yes"
   db:
     image: postgres:9.6-alpine
 

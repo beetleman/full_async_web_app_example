@@ -20,7 +20,6 @@ class Index(web.View):
             status = 400
 
         objects = get_objects(self.request.app)
-        logger.warning(objects)
 
         async with objects.atomic():
             history, _ = await objects.get_or_create(

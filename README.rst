@@ -29,12 +29,11 @@ Migrations
 
 * create:
 .. code-block:: bash
-   docker-compose exec app pw_migrate create --database $DATABASE_URL --directory full_async_web_app_example/migrations --auto full_async_web_app_example.app.models migration_name
+   docker-compose exec app bash migrate_create.sh migration-name
 
 * run migration
 .. code-block:: bash
-   docker-compose exec app make migrate
-
+   docker-compose exec app bash migrate_run.sh
 
 Features
 --------
