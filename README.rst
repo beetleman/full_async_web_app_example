@@ -7,10 +7,12 @@ Migrations
 
 * create:
 .. code-block:: bash
+
    docker-compose exec app bash migrate_create.sh migration-name
 
-* run migration
+* run migration:
 .. code-block:: bash
+
    docker-compose exec app bash migrate_run.sh
 
 Features
